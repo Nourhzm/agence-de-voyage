@@ -1,0 +1,53 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block title %} Circuits ! {% endblock %}
+
+{% block main %}
+
+<h1> Circuit index </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Id </th>
+                <th> description </th>
+                <th> pays Depart </th>
+                <th> ville Depart 	</th>
+                <th> ville Arrivee </th> 
+        <th> duree Circuit </th>
+        <th> date </th>
+        <th> Prix </th>
+                <td> &nbsp;</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for  circuit in circuits %}
+{%  if   circuit.programmations is not empty  %}
+          {% for prog in circuit.programmations %}  
+          {% if date(prog.dateDepart) > date() %}
+            <tr>
+                <td>{{ circuit.id }}</td>
+                <td>{{ circuit.description}} </td>
+                <td>{{ circuit.paysDepart }}</td>
+                <td>{{ circuit.villeDepart }}</td>
+                 <td> {{ circuit.villeArrivee }}</td>
+                 <td> {{ circuit.dureeCircuit }}</td>
+                 <td>  {{ prog.dateDepart|date('Y-m-d H:i:s')}}</td>
+                 <td> {{ prog.prix}} </td>
+                 <td> <a href="{{ path('circuit_show', {'id': circuit.id}) }}"> détails </a> </td>
+                {%  if prog.id in likes %}
+                 <td> <a href="{{ path('circuit_likes', {'id': prog.id}) }}" > dislike </a> </td>
+                 {% else %}
+                       <td> <a href="{{ path('circuit_likes', {'id': prog.id}) }}" > like </a> </td>
+                  {% endif %}
+             
+            </tr>
+            
+          {% endif %}  
+          {% endfor %}  
+        {% endif %}
+          
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

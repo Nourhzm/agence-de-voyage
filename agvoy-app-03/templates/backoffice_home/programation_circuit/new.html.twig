@@ -1,0 +1,14 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block main %}
+
+<title>New ProgramationCircuit</title>
+
+{% block body %}
+    <h1>Create new ProgramationCircuit</h1>
+
+    {{ include('/backoffice_home/programation_circuit/_form.html.twig') }}
+
+    <a href="{{ path('admin_programation_circuit_index') }}">back to list</a>
+{% endblock %}
+{% endblock %}

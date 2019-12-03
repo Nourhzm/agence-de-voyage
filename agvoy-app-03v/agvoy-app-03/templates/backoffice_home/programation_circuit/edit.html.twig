@@ -1,0 +1,17 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block main %}
+
+
+<title>Edit ProgramationCircuit</title>
+
+{% block body %}
+    <h1>Edit ProgramationCircuit</h1>
+
+    {{ include('backoffice_home/programation_circuit/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_programation_circuit_index') }}">back to list</a>
+
+    {{ include('backoffice_home/programation_circuit/_delete_form.html.twig') }}
+{% endblock %}
+{% endblock %}

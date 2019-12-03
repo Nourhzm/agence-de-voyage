@@ -1,0 +1,44 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block main %}
+
+<title>ProgramationCircuit index</title>
+
+{% block body %}
+    <h1>ProgramationCircuit index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+            
+                <th>DateDepart</th>
+                <th>NombrePersonnes</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for programation_circuit in programation_circuits %}
+            <tr>
+                <td>{{ programation_circuit.id }}</td>
+                
+                <td>{{ programation_circuit.dateDepart ? programation_circuit.dateDepart|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ programation_circuit.nombrePersonnes }}</td>
+                <td>{{ programation_circuit.prix }}</td>
+                <td>
+                    <a href="{{ path('admin_programation_circuit_show', {'id': programation_circuit.id}) }}">show</a>
+                    <a href="{{ path('admin_programation_circuit_edit', {'id': programation_circuit.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_programation_circuit_new') }}">Create new</a>
+{% endblock %}
+{% endblock %}
